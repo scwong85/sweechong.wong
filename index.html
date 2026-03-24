@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Swee Chong Wong – Senior Software Engineer & Bioinformatics Tech Lead</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Senior Software Engineer & Bioinformatics Tech Lead building Python, AWS, CI/CD and Nextflow solutions for genomics and digital health." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #020617;
+      --border: rgba(148, 163, 184, 0.18);
+      --danger: #f97373;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.8);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #1f2937 0, #020617 42%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 32px 16px 48px;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 6px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.6));
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pill-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #38bdf8 45%, #1d4ed8 100%);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 44px);
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 18px 0 12px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.75);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast), border-color var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, #e0f2fe 0, #38bdf8 30%, #1e3a8a 100%);
+      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.35);
+      color: #020617;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 60px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.8);
+    }
+
+    .btn-icon {
+      font-size: 16px;
+    }
+
+    .hero-card {
+      border-radius: 28px;
+      padding: 20px 20px 18px;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.08), transparent 60%),
+        linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .hero-badge {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-badge span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-metadata span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-metadata span::before {
+      content: "•";
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    .hero-quote {
+      font-size: 13px;
+      color: #e5e7eb;
+      border-radius: var(--radius-md);
+      padding: 10px 11px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .hero-quote span {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-quote strong {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .hero-chip {
+      font-size: 11px;
+      padding: 7px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: rgba(2, 6, 23, 0.92);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px 16px 14px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.9);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill-small {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--muted);
+    }
+
+    .skills-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .skills-column-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      margin-bottom: 3px;
+    }
+
+    .experience-list {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .experience-list strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .experience-item {
+      margin-bottom: 8px;
+    }
+
+    .experience-meta {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 2px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(30, 64, 175, 0.5);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-link {
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.6);
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding-top: 20px;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .skills-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .skills-columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-metadata {
+        gap: 4px 10px;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Senior Software Engineer & Bioinformatics Tech Lead</span>
+        </div>
+        <h1 class="hero-title">
+          Building reliable genomics & digital health systems with <span>Python, AWS & CI/CD</span>
+        </h1>
+        <p class="hero-subtitle">
+          I’m Swee&nbsp;Chong Wong, a senior software engineer and bioinformatics specialist with 12+ years of experience turning complex NGS and clinical workflows into scalable, production-grade software.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Genomics &amp; digital health</span>
+          <span class="tag">Python • Docker • Nextflow</span>
+          <span class="tag">AWS (API Gateway, ECS, Lambda, DynamoDB)</span>
+          <span class="tag">GitLab CI/CD • GitHub Actions</span>
+          <span class="tag">Agentic AI • LangChain • CrewAI • Ollama</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:sweechong.wong@gmail.com">
+            <span class="btn-icon">✉️</span>
+            <span>Contact me</span>
+          </a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/sweechongwong/" target="_blank" rel="noreferrer">
+            <span class="btn-icon">↗</span>
+            <span>View LinkedIn</span>
+          </a>
+          <a class="btn btn-outline" href="https://github.com/scwong85" target="_blank" rel="noreferrer">
+            <span class="btn-icon">💻</span>
+            <span>GitHub profile</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-header">
+          <div>
+            <div class="hero-badge">
+              Current role • <span>Bioinformatics Tech Lead</span>
+            </div>
+            <div class="hero-metadata">
+              <span>Blueprint Genetics / Quest Diagnostics</span>
+              <span>Helsinki, Finland</span>
+              <span>12+ years experience</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-quote">
+          <div><strong>“Laser‑focused, analytical, and solution‑oriented — the tech lead anyone can rely on.”</strong></div>
+          <div><span>Feedback from colleagues & managers</span></div>
+        </div>
+        <div class="hero-grid">
+          <div class="hero-chip">
+            <span class="hero-chip-dot"></span>
+            <span>Python + Docker + Nextflow pipelines on AWS</span>
+          </div>
+          <div class="hero-chip">
+            <span class="hero-chip-dot"></span>
+            <span>Modern GitLab CI/CD & GitHub Actions for testing & validation</span>
+          </div>
+          <div class="hero-chip">
+            <span class="hero-chip-dot"></span>
+            <span>Cross‑functional leadership across science, engineering & product</span>
+          </div>
+          <div class="hero-chip">
+            <span class="hero-chip-dot" style="background:#38bdf8; box-shadow:0 0 10px rgba(56,189,248,0.8);"></span>
+            <span>Agentic AI for documentation, experimentation & workflows</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section>
+      <h2 class="section-title">Core <span>Strengths</span></h2>
+      <div class="card">
+        <div class="skills-columns">
+          <div>
+            <div class="skills-column-title">Software & pipelines</div>
+            <ul>
+              <li>Python application development</li>
+              <li>Data processing & analytics pipelines</li>
+              <li>REST APIs & backend services</li>
+              <li>Docker & containerization</li>
+              <li>Nextflow pipeline orchestration</li>
+            </ul>
+          </div>
+          <div>
+            <div class="skills-column-title">Cloud & DevOps</div>
+            <ul>
+              <li>AWS (API Gateway, ECS, Lambda, DynamoDB, S3, EFS, SES)</li>
+              <li>GitLab CI/CD & GitHub Actions</li>
+              <li>Infrastructure as code & Terraform</li>
+              <li>Scalable, event‑driven architectures</li>
+            </ul>
+          </div>
+          <div>
+            <div class="skills-column-title">AI, data & leadership</div>
+            <ul>
+              <li>Agentic AI, LangChain, CrewAI, Ollama</li>
+              <li>RAG chatbots & automation</li>
+              <li>NGS & clinical genomics workflows</li>
+              <li>Cross‑functional collaboration & mentoring</li>
+              <li>Pre‑sales & solution architecture</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Selected <span>Projects</span></h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Finnish Match Madness – Vocabulary Trainer PWA</div>
+              <div class="card-subtitle">Offline‑first language learning game</div>
+            </div>
+            <span class="pill-small">HTML • CSS • JS • PWA</span>
+          </div>
+          <div class="card-body">
+            Built a mobile‑friendly, Duolingo‑style “match madness” game for learning Finnish vocabulary, running fully in the browser with offline support and smooth touch interaction.
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">Progressive Web App</span>
+            <span class="card-tag">Game‑like UX</span>
+            <span class="card-tag">Client‑side performance</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Workout Tracker – Offline‑First PWA</div>
+              <div class="card-subtitle">Long‑term training history & stats</div>
+            </div>
+            <span class="pill-small">JS • PWA • Data viz</span>
+          </div>
+          <div class="card-body">
+            Created a workout tracking app that stores workouts locally, works offline, and provides time‑windowed statistics and visualizations for training progression.
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">Local persistence</span>
+            <span class="card-tag">Offline UX</span>
+            <span class="card-tag">Data visualization</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Gratitude Diary – Journaling PWA</div>
+              <div class="card-subtitle">Everyday mental‑wellbeing tool</div>
+            </div>
+            <span class="pill-small">HTML • CSS • JS</span>
+          </div>
+          <div class="card-body">
+            Designed a mobile‑optimized gratitude diary with calendar view, photo attachments, JSON export and offline support, optimized for quick, low‑friction daily entries.
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">Product thinking</span>
+            <span class="card-tag">Mobile UX</span>
+            <span class="card-tag">Offline‑first design</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">RAG Chatbot & LLM Chrome Extensions</div>
+              <div class="card-subtitle">Agentic AI for real workflows</div>
+            </div>
+            <span class="pill-small">LangChain • Pinecone • LLMs</span>
+          </div>
+          <div class="card-body">
+            Prototyped a RAG chatbot for static websites using vector search (Pinecone) and built Chrome extensions to streamline job search and advanced prompt engineering with multiple LLM providers.
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">Agentic AI</span>
+            <span class="card-tag">RAG</span>
+            <span class="card-tag">Developer tooling</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Experience & <span>Education</span></h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Blueprint Genetics / Quest Diagnostics</div>
+              <div class="card-subtitle">Bioinformatics Tech Lead / Senior Bioinformatics Engineer</div>
+            </div>
+          </div>
+          <div class="experience-list">
+            <div class="experience-item">
+              <strong>Cloud‑native pipelines:</strong> Developed and optimized Python/Docker/Nextflow pipelines on AWS for genomics and clinical workflows.
+            </div>
+            <div class="experience-item">
+              <strong>CI/CD & quality:</strong> Modernized GitLab CI/CD and GitHub Actions to automate testing, validation and releases across multiple services.
+            </div>
+            <div class="experience-item">
+              <strong>Leadership:</strong> Provided technical leadership and mentoring on cloud architecture, pipelines and DevOps practices in a cross‑functional team.
+            </div>
+          </div>
+          <div class="experience-meta">2022 – Present • Helsinki, Finland</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Earlier roles & education</div>
+              <div class="card-subtitle">MediSapiens • Self‑employed • University of Helsinki</div>
+            </div>
+          </div>
+          <div class="experience-list">
+            <div class="experience-item">
+              <strong>MediSapiens:</strong> Led software projects as Solutions Architect / Team Manager; built Django/PostgreSQL backends and ML‑driven solutions for biological data.
+            </div>
+            <div class="experience-item">
+              <strong>Self‑employed:</strong> Developed Shopify‑based e‑commerce sites and analytics‑driven improvements with a strong customer‑facing focus.
+            </div>
+            <div class="experience-item">
+              <strong>Education:</strong> PhD in Quantitative Genetics and Master in Bioinformatics (5/5), University of Helsinki.
+            </div>
+          </div>
+          <div class="experience-meta">2016 – 2022 • Bioinformatics, data & web</div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Open to Senior/Principal Software Engineer & Tech Lead roles in genomics and digital health.</div>
+      <div class="footer-links">
+        <a class="footer-link" href="mailto:sweechong.wong@gmail.com">Email</a>
+        <a class="footer-link" href="https://www.linkedin.com/in/sweechongwong/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="footer-link" href="https://github.com/scwong85" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
