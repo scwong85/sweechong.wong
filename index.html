@@ -2,713 +2,514 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Swee Chong Wong – Senior Software Engineer & Bioinformatics Tech Lead</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Senior Software Engineer & Bioinformatics Tech Lead building Python, AWS, CI/CD and Nextflow solutions for genomics and digital health." />
+  <title>Swee Chong Wong – Bioinformatics Tech Lead, Cloud &amp; AI Engineer</title>
+  <meta name="description" content="Senior software engineer and bioinformatician (PhD) with 12+ years building clinical genomics pipelines on AWS, applied AI systems, and customer-facing solutions for health tech. Based in Helsinki." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Swee Chong Wong – Bioinformatics Tech Lead, Cloud &amp; AI Engineer" />
+  <meta property="og:description" content="Clinical genomics pipelines on AWS, applied AI, and solutions for health tech. 12+ years, PhD, Helsinki." />
+  <meta property="og:url" content="https://scwong85.github.io/sweechong.wong/" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" />
   <style>
+    /* Layout: sticky slim nav, hero with portrait, a live sequencing trace as the signature element,
+       three-angle cards, selected work as ruled rows, experience timeline, contact band. */
     :root {
-      --bg: #050816;
-      --bg-alt: #0f172a;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --card: #020617;
-      --border: rgba(148, 163, 184, 0.18);
-      --danger: #f97373;
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.8);
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --radius-pill: 999px;
-      --transition-fast: 180ms ease-out;
+      --bg: #f6f8f9;
+      --surface: #ffffff;
+      --ink: #0c1b24;
+      --muted: #4b5f69;
+      --line: #d9e2e6;
+      --accent: #0a6b6f;
+      --accent-ink: #ffffff;
+      --accent-soft: #dff0ef;
+      --base-a: #2f9e53;
+      --base-c: #2f6fe0;
+      --base-g: #d99a00;
+      --base-t: #d9434b;
+      --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+      --radius: 10px;
+      --gutter: 20px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0a1418;
+        --surface: #101d23;
+        --ink: #e8f1f3;
+        --muted: #94a9b1;
+        --line: #213640;
+        --accent: #55d3c6;
+        --accent-ink: #062320;
+        --accent-soft: #123036;
+        --base-a: #4fd07a;
+        --base-c: #6c9bff;
+        --base-g: #f0b830;
+        --base-t: #ff7078;
+      }
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     body {
-      font-family: var(--font-main);
-      background: radial-gradient(circle at top, #1f2937 0, #020617 42%, #000 100%);
-      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
       line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
       -webkit-font-smoothing: antialiased;
-      padding: 32px 16px 48px;
+    }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    ul { list-style: none; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding-inline: var(--gutter); }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+    .brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+    .nav ul { display: flex; gap: 22px; font-size: 14px; align-items: center; }
+    .nav ul a { color: var(--muted); text-decoration: none; }
+    .nav ul a:hover { color: var(--ink); }
+    .nav .cta { color: var(--accent-ink); background: var(--accent); padding: 6px 14px; border-radius: 999px; font-weight: 500; }
+    .nav ul a.cta:hover { color: var(--accent-ink); filter: brightness(1.08); }
+    @media (max-width: 640px) { .nav li.hide-sm { display: none; } }
+
+    /* Hero */
+    .hero { padding-block: 56px 28px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 48px; align-items: center; }
+    .eyebrow { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 5.6vw, 58px); line-height: 1.04; letter-spacing: -0.03em; margin: 14px 0 18px; text-wrap: balance; }
+    .lede { font-size: 18px; color: var(--muted); max-width: 62ch; }
+    .lede strong { color: var(--ink); font-weight: 600; }
+    .angles-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .angle-link { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: border-color .15s, transform .15s; }
+    .angle-link:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .angle-link i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .portrait { position: relative; width: 260px; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: var(--accent-soft); border: 1px solid var(--line); justify-self: end; }
+    .portrait .mono { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 72px; color: var(--accent); letter-spacing: -0.04em; }
+    .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+      .portrait { width: 140px; justify-self: start; order: -1; }
+      .portrait .mono { font-size: 44px; }
     }
 
-    main {
-      max-width: 1080px;
-      margin: 0 auto;
-    }
+    /* Sequencing trace */
+    .trace-band { margin-top: 36px; }
+    .trace-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    #trace { display: block; width: 100%; height: 132px; }
+    .trace-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 8px 16px 10px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+    .legend { display: inline-flex; gap: 12px; }
+    .legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    /* Sections */
+    section.block { padding-block: 56px 8px; }
+    .sec-head { margin-bottom: 24px; max-width: 64ch; }
+    h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+    .sec-head p { margin-top: 8px; color: var(--muted); }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px 6px 6px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: linear-gradient(90deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.6));
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
+    /* Angle cards */
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    .card .tagline { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; color: var(--muted); }
+    .card .tagline i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .card h3 { font-family: var(--font-display); font-size: 21px; line-height: 1.2; letter-spacing: -0.01em; }
+    .card ul { display: flex; flex-direction: column; gap: 9px; font-size: 14.5px; color: var(--muted); }
+    .card li { padding-left: 16px; position: relative; }
+    .card li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 2px; background: var(--accent); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+    .chip { font-family: var(--font-mono); font-size: 11.5px; padding: 3px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+    @media (max-width: 900px) { .cards { grid-template-columns: minmax(0, 1fr); } }
 
-    .pill-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #38bdf8 45%, #1d4ed8 100%);
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.9);
-    }
+    /* Work rows */
+    .rows { border-top: 1px solid var(--line); }
+    .row { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .row h3 { font-family: var(--font-display); font-size: 18px; line-height: 1.25; letter-spacing: -0.01em; }
+    .row .kind { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .row p { color: var(--muted); font-size: 15px; max-width: 70ch; }
+    .row .chips { margin-top: 10px; padding-top: 0; }
+    @media (max-width: 700px) { .row { grid-template-columns: minmax(0, 1fr); } }
+    .more { margin-top: 18px; font-size: 15px; }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
-      gap: 40px;
-      align-items: center;
-      margin-bottom: 40px;
-    }
+    /* Timeline */
+    .timeline { border-top: 1px solid var(--line); }
+    .tl { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .tl .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+    .tl h3 { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.01em; line-height: 1.25; }
+    .tl .org { color: var(--muted); font-size: 14.5px; margin-top: 2px; }
+    .tl ul { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: var(--muted); max-width: 72ch; }
+    .tl li { padding-left: 16px; position: relative; }
+    .tl li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 6px; height: 2px; background: var(--accent); }
+    @media (max-width: 700px) { .tl { grid-template-columns: minmax(0, 1fr); } }
 
-    .hero-title {
-      font-size: clamp(32px, 5vw, 44px);
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 18px 0 12px;
-    }
+    /* Quote */
+    .quote { margin-top: 56px; padding: 28px 28px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+    .quote blockquote { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 26px); line-height: 1.3; letter-spacing: -0.01em; font-weight: 600; text-wrap: balance; }
+    .quote cite { display: block; margin-top: 12px; font-style: normal; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 
-    .hero-title span {
-      background: linear-gradient(135deg, #38bdf8, #a855f7);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+    /* Stack */
+    .stack { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 28px; }
+    .stack h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+    .stack p { font-size: 15px; }
+    @media (max-width: 800px) { .stack { grid-template-columns: minmax(0, 1fr); } }
 
-    .hero-subtitle {
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 620px;
-    }
-
-    .hero-subtitle strong {
-      color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.75);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 9px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid transparent;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      background: none;
-      color: var(--text);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        background var(--transition-fast), border-color var(--transition-fast),
-        color var(--transition-fast);
-    }
-
-    .btn-primary {
-      background: radial-gradient(circle at 0 0, #e0f2fe 0, #38bdf8 30%, #1e3a8a 100%);
-      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.35);
-      color: #020617;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 26px 60px rgba(56, 189, 248, 0.5);
-    }
-
-    .btn-outline {
-      border-color: rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--muted);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--text);
-      background: rgba(15, 23, 42, 1);
-      transform: translateY(-1px);
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.8);
-    }
-
-    .btn-icon {
-      font-size: 16px;
-    }
-
-    .hero-card {
-      border-radius: 28px;
-      padding: 20px 20px 18px;
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.08), transparent 60%),
-        linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .hero-badge {
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-badge span {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .hero-metadata {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 14px;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .hero-metadata span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-metadata span::before {
-      content: "•";
-      color: rgba(148, 163, 184, 0.7);
-    }
-
-    .hero-quote {
-      font-size: 13px;
-      color: #e5e7eb;
-      border-radius: var(--radius-md);
-      padding: 10px 11px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      margin-bottom: 12px;
-    }
-
-    .hero-quote span {
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-quote strong {
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .hero-chip {
-      font-size: 11px;
-      padding: 7px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-chip-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
-    }
-
-    section {
-      margin-top: 40px;
-    }
-
-    .section-title {
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .section-title span {
-      color: var(--accent);
-    }
-
-    .grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card {
-      background: rgba(2, 6, 23, 0.92);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 16px 16px 14px;
-      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.9);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .card-subtitle {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .pill-small {
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-    }
-
-    .card-body {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .card-body strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 9px;
-    }
-
-    .card-tag {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--muted);
-    }
-
-    .skills-columns {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .skills-column-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    ul li {
-      margin-bottom: 3px;
-    }
-
-    .experience-list {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .experience-list strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .experience-item {
-      margin-bottom: 8px;
-    }
-
-    .experience-meta {
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-top: 2px;
-    }
-
-    .footer {
-      margin-top: 40px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(30, 64, 175, 0.5);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .footer-link {
-      border-bottom: 1px dashed rgba(148, 163, 184, 0.6);
-    }
-
-    @media (max-width: 900px) {
-      body {
-        padding-top: 20px;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .skills-columns {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .skills-columns {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-metadata {
-        gap: 4px 10px;
-      }
-
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
+    /* Contact */
+    .contact { margin-top: 64px; padding-block: 44px; background: var(--ink); color: var(--bg); }
+    .contact .wrap { display: flex; flex-wrap: wrap; gap: 24px 48px; justify-content: space-between; align-items: flex-end; }
+    .contact h2 { color: var(--bg); max-width: 22ch; }
+    .contact p { margin-top: 8px; opacity: .78; max-width: 52ch; }
+    .contact .links { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+    .contact a { color: var(--bg); text-decoration-color: color-mix(in srgb, var(--bg) 45%, transparent); }
+    .contact a:hover { text-decoration-color: var(--bg); }
+    .contact .email { font-family: var(--font-display); font-size: clamp(22px, 3.4vw, 30px); font-weight: 700; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+    footer { padding-block: 20px 36px; font-size: 13px; color: var(--muted); }
   </style>
 </head>
 <body>
-  <main>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top">Swee Chong Wong</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li class="hide-sm"><a href="#angles">Focus</a></li>
+          <li class="hide-sm"><a href="#work">Work</a></li>
+          <li class="hide-sm"><a href="#experience">Experience</a></li>
+          <li><a class="cta" href="#contact">Get in touch</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
     <section class="hero">
-      <div>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          <span>Senior Software Engineer & Bioinformatics Tech Lead</span>
-        </div>
-        <h1 class="hero-title">
-          Building reliable genomics & digital health systems with <span>Python, AWS & CI/CD</span>
-        </h1>
-        <p class="hero-subtitle">
-          I’m Swee&nbsp;Chong Wong, a senior software engineer and bioinformatics specialist with 12+ years of experience turning complex NGS and clinical workflows into scalable, production-grade software.
-        </p>
-        <div class="hero-tags">
-          <span class="tag">Genomics &amp; digital health</span>
-          <span class="tag">Python • Docker • Nextflow</span>
-          <span class="tag">AWS (API Gateway, ECS, Lambda, DynamoDB)</span>
-          <span class="tag">GitLab CI/CD • GitHub Actions</span>
-          <span class="tag">Agentic AI • LangChain • CrewAI • Ollama</span>
-        </div>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:sweechong.wong@gmail.com">
-            <span class="btn-icon">✉️</span>
-            <span>Contact me</span>
-          </a>
-          <a class="btn btn-outline" href="https://www.linkedin.com/in/sweechongwong/" target="_blank" rel="noreferrer">
-            <span class="btn-icon">↗</span>
-            <span>View LinkedIn</span>
-          </a>
-          <a class="btn btn-outline" href="https://github.com/scwong85" target="_blank" rel="noreferrer">
-            <span class="btn-icon">💻</span>
-            <span>GitHub profile</span>
-          </a>
-        </div>
-      </div>
-
-      <aside class="hero-card">
-        <div class="hero-card-header">
-          <div>
-            <div class="hero-badge">
-              Current role • <span>Bioinformatics Tech Lead</span>
-            </div>
-            <div class="hero-metadata">
-              <span>Blueprint Genetics / Quest Diagnostics</span>
-              <span>Helsinki, Finland</span>
-              <span>12+ years experience</span>
-            </div>
-          </div>
-        </div>
-        <div class="hero-quote">
-          <div><strong>“Laser‑focused, analytical, and solution‑oriented — the tech lead anyone can rely on.”</strong></div>
-          <div><span>Feedback from colleagues & managers</span></div>
-        </div>
+      <div class="wrap">
         <div class="hero-grid">
-          <div class="hero-chip">
-            <span class="hero-chip-dot"></span>
-            <span>Python + Docker + Nextflow pipelines on AWS</span>
-          </div>
-          <div class="hero-chip">
-            <span class="hero-chip-dot"></span>
-            <span>Modern GitLab CI/CD & GitHub Actions for testing & validation</span>
-          </div>
-          <div class="hero-chip">
-            <span class="hero-chip-dot"></span>
-            <span>Cross‑functional leadership across science, engineering & product</span>
-          </div>
-          <div class="hero-chip">
-            <span class="hero-chip-dot" style="background:#38bdf8; box-shadow:0 0 10px rgba(56,189,248,0.8);"></span>
-            <span>Agentic AI for documentation, experimentation & workflows</span>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section>
-      <h2 class="section-title">Core <span>Strengths</span></h2>
-      <div class="card">
-        <div class="skills-columns">
           <div>
-            <div class="skills-column-title">Software & pipelines</div>
+            <p class="eyebrow">Helsinki, Finland · PhD · 12+ years</p>
+            <h1>I turn sequencing data into software that clinicians can trust.</h1>
+            <p class="lede">
+              Senior software engineer and bioinformatician. I build <strong>production genomics pipelines on AWS</strong>,
+              ship <strong>applied AI</strong> that fits real workflows, and translate customer problems into
+              <strong>solutions for health tech</strong>.
+            </p>
+            <div class="angles-nav" aria-label="Three areas of focus">
+              <a class="angle-link" href="#angle-eng"><i style="background: var(--base-c)"></i>Bioinformatics &amp; cloud engineering</a>
+              <a class="angle-link" href="#angle-ai"><i style="background: var(--base-a)"></i>AI &amp; agentic systems</a>
+              <a class="angle-link" href="#angle-sol"><i style="background: var(--base-g)"></i>Solutions &amp; pre-sales</a>
+            </div>
+          </div>
+          <!-- Portrait lives in assets/portrait.jpg. If it is missing, the monogram shows instead. -->
+          <div class="portrait">
+            <div class="mono" aria-hidden="true">SW</div>
+            <img src="assets/portrait.jpg" alt="Portrait of Swee Chong Wong" width="896" height="1200" fetchpriority="high" onerror="this.remove()" />
+          </div>
+        </div>
+
+        <div class="trace-band">
+          <div class="trace-card">
+            <canvas id="trace" role="img" aria-label="Decorative sequencing trace showing base calls A, C, G and T"></canvas>
+            <div class="trace-cap">
+              <span>Sample read · base calls from raw signal to sequence</span>
+              <span class="legend" aria-hidden="true">
+                <span><i style="background: var(--base-a)"></i>A</span>
+                <span><i style="background: var(--base-c)"></i>C</span>
+                <span><i style="background: var(--base-g)"></i>G</span>
+                <span><i style="background: var(--base-t)"></i>T</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="angles">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Three ways I create value</h2>
+          <p>One person who can build the pipeline, apply AI to it, and explain it to the customer.</p>
+        </div>
+        <div class="cards">
+          <article class="card" id="angle-eng">
+            <div class="tagline"><i style="background: var(--base-c)"></i>Engineering</div>
+            <h3>Bioinformatics &amp; cloud engineering</h3>
             <ul>
-              <li>Python application development</li>
-              <li>Data processing & analytics pipelines</li>
-              <li>REST APIs & backend services</li>
-              <li>Docker & containerization</li>
-              <li>Nextflow pipeline orchestration</li>
+              <li>Python, Docker and Nextflow pipelines for DNA data processing and analysis on AWS.</li>
+              <li>Moved Step Functions applications onto Nextflow workflows running on AWS Batch.</li>
+              <li>Variant annotation services on AWS built with CDK; GitLab CI/CD and GitHub Actions automate testing, validation and releases.</li>
+              <li>Verification and validation documentation, so clinical software ships with its evidence.</li>
             </ul>
+            <div class="chips"><span class="chip">Python</span><span class="chip">Nextflow</span><span class="chip">Docker</span><span class="chip">AWS CDK</span><span class="chip">AWS Batch</span><span class="chip">GitLab CI/CD</span></div>
+          </article>
+
+          <article class="card" id="angle-ai">
+            <div class="tagline"><i style="background: var(--base-a)"></i>Applied AI</div>
+            <h3>AI &amp; agentic systems</h3>
+            <ul>
+              <li>RAG chatbot for static sites, with a Pinecone vector store, deployed on Render.</li>
+              <li>Chrome extensions that bring several LLM providers into job-search and prompt-engineering workflows.</li>
+              <li>Hands-on with LangChain, CrewAI and Ollama, and daily use of Copilot and Claude in engineering work.</li>
+              <li>Machine learning on large biological datasets: regression, neural networks, clustering, NER and SVM.</li>
+            </ul>
+            <div class="chips"><span class="chip">LangChain</span><span class="chip">CrewAI</span><span class="chip">Ollama</span><span class="chip">RAG</span><span class="chip">TensorFlow</span></div>
+          </article>
+
+          <article class="card" id="angle-sol">
+            <div class="tagline"><i style="background: var(--base-g)"></i>Customer-facing</div>
+            <h3>Solutions &amp; pre-sales for health tech</h3>
+            <ul>
+              <li>Solutions architect at MediSapiens: turned customer use cases and problem statements into technical specifications.</li>
+              <li>Scientific and system expert on sales calls, with mock-ups and demos built for prospects.</li>
+              <li>Led projects from inception to launch, trained customers and supervised an international developer team serving Europe and the USA.</li>
+              <li>Designed and launched web shops end to end as a consultant.</li>
+            </ul>
+            <div class="chips"><span class="chip">Solution design</span><span class="chip">Demos</span><span class="chip">Project management</span><span class="chip">Django</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="work">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Selected work</h2>
+          <p>Side projects where I own the product from idea to deployed app.</p>
+        </div>
+        <div class="rows">
+          <article class="row">
+            <div>
+              <h3>RAG chatbot for static sites</h3>
+              <div class="kind">Applied AI</div>
+            </div>
+            <div>
+              <p>Chatbot prototype that answers questions from a static website's own content using retrieval-augmented generation. Vectors live in Pinecone and the service runs on Render.</p>
+              <div class="chips"><span class="chip">RAG</span><span class="chip">Pinecone</span><span class="chip">LLMs</span><span class="chip">Render</span></div>
+            </div>
+          </article>
+          <article class="row">
+            <div>
+              <h3>LLM Chrome extensions</h3>
+              <div class="kind">Developer tooling</div>
+            </div>
+            <div>
+              <p>Browser extensions that connect multiple LLM providers to everyday work: job searching and advanced prompt engineering, directly in the browser.</p>
+              <div class="chips"><span class="chip">Chrome extension</span><span class="chip">Prompt engineering</span><span class="chip">Multi-LLM</span></div>
+            </div>
+          </article>
+          <article class="row">
+            <div>
+              <h3>Finnish Match Madness</h3>
+              <div class="kind">Progressive web app</div>
+            </div>
+            <div>
+              <p>A Duolingo-style matching game for learning Finnish vocabulary. Runs fully in the browser with offline support and smooth touch interaction. Built with vanilla HTML, CSS and JavaScript, hosted on GitHub Pages.</p>
+              <div class="chips"><span class="chip">PWA</span><span class="chip">Offline-first</span><span class="chip">Vanilla JS</span></div>
+            </div>
+          </article>
+          <article class="row">
+            <div>
+              <h3>Workout Tracker</h3>
+              <div class="kind">Progressive web app</div>
+            </div>
+            <div>
+              <p>Training log that works fully offline, keeps history on the device, and charts progress over different time ranges.</p>
+              <div class="chips"><span class="chip">PWA</span><span class="chip">Data visualization</span><span class="chip">Local persistence</span></div>
+            </div>
+          </article>
+          <article class="row">
+            <div>
+              <h3>Gratitude Diary</h3>
+              <div class="kind">Progressive web app</div>
+            </div>
+            <div>
+              <p>Mobile-first journal with a calendar view, photo attachments, JSON export and offline support, designed for quick daily entries.</p>
+              <div class="chips"><span class="chip">PWA</span><span class="chip">Mobile UX</span><span class="chip">Offline-first</span></div>
+            </div>
+          </article>
+        </div>
+        <p class="more"><a href="https://github.com/scwong85" target="_blank" rel="noreferrer">More projects on GitHub →</a></p>
+      </div>
+    </section>
+
+    <section class="block" id="experience">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Experience</h2>
+        </div>
+        <div class="timeline">
+          <article class="tl">
+            <div class="when">2022 – Present</div>
+            <div>
+              <h3>Bioinformatics Tech Lead</h3>
+              <div class="org">Blueprint Genetics (Quest Diagnostics) · Helsinki</div>
+              <ul>
+                <li>Lead development of Python, Docker and Nextflow pipelines for clinical genomics on AWS.</li>
+                <li>Modernized GitLab CI/CD and GitHub Actions to automate testing, validation and releases.</li>
+                <li>Technical leadership and mentoring on cloud architecture, pipelines and DevOps, working across lab science, engineering and product.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="tl">
+            <div class="when">2020 – 2022</div>
+            <div>
+              <h3>Shopify Developer, IT Consultant, Bioinformatician</h3>
+              <div class="org">Self-employed</div>
+              <ul>
+                <li>Silver medal in Vuoden Huippu, Finland's major creative competition, for Shopify design and development.</li>
+                <li>Built a Django backend connected to Shopify webhooks to automate order processing and fulfillment.</li>
+                <li>Ran RNA-seq differential expression analysis and co-authored an ovarian cancer research article.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="tl">
+            <div class="when">2016 – 2020</div>
+            <div>
+              <h3>Solutions Architect and Project Manager</h3>
+              <div class="org">MediSapiens · Helsinki</div>
+              <ul>
+                <li>Led six software projects, including analytics and machine learning software, and took two from inception to launch.</li>
+                <li>Supported sales as the scientific and system expert; built demo mock-ups; trained customers.</li>
+                <li>Back-end work in Django, Python and R; analysis of whole genome, exome and SNP chip data.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="tl">
+            <div class="when">2009 – 2016</div>
+            <div>
+              <h3>PhD, Quantitative and Population Genetics</h3>
+              <div class="org">University of Helsinki · MSc Bioinformatics with top grade</div>
+              <ul>
+                <li>Genomics contributor to a major butterfly genome project; GWAS work on colon cancer phenotypes.</li>
+                <li>Quantitative genetics analyses across several ecology and molecular biology projects, resulting in journal publications listed on <a href="https://www.researchgate.net/profile/Swee-Wong-3" target="_blank" rel="noreferrer">ResearchGate</a>.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <figure class="quote">
+          <blockquote>“Laser-focused, analytical, and solution-oriented — the tech lead anyone can rely on.”</blockquote>
+          <cite>Feedback from colleagues and managers</cite>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block" id="stack">
+      <div class="wrap">
+        <div class="sec-head"><h2>Toolbox</h2></div>
+        <div class="stack">
+          <div>
+            <h3>Software &amp; data</h3>
+            <p>Python, R, Java, Django, REST APIs, SQL and PostgreSQL, Nextflow, statistical analysis, TensorFlow.</p>
           </div>
           <div>
-            <div class="skills-column-title">Cloud & DevOps</div>
-            <ul>
-              <li>AWS (API Gateway, ECS, Lambda, DynamoDB, S3, EFS, SES)</li>
-              <li>GitLab CI/CD & GitHub Actions</li>
-              <li>Infrastructure as code & Terraform</li>
-              <li>Scalable, event‑driven architectures</li>
-            </ul>
+            <h3>Cloud &amp; delivery</h3>
+            <p>AWS (CDK, Lambda, ECS, Batch, Step Functions, API Gateway, DynamoDB, S3, EFS, SES), Terraform, Docker, GitLab CI/CD, GitHub Actions.</p>
           </div>
           <div>
-            <div class="skills-column-title">AI, data & leadership</div>
-            <ul>
-              <li>Agentic AI, LangChain, CrewAI, Ollama</li>
-              <li>RAG chatbots & automation</li>
-              <li>NGS & clinical genomics workflows</li>
-              <li>Cross‑functional collaboration & mentoring</li>
-              <li>Pre‑sales & solution architecture</li>
-            </ul>
+            <h3>AI &amp; languages</h3>
+            <p>LangChain, CrewAI, Ollama, RAG, prompt engineering. Languages: English, Malay, Chinese (native), Finnish (elementary).</p>
           </div>
         </div>
       </div>
     </section>
-
-    <section>
-      <h2 class="section-title">Experience & <span>Education</span></h2>
-      <div class="grid grid-2">
-        <div class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Blueprint Genetics / Quest Diagnostics</div>
-              <div class="card-subtitle">Bioinformatics Tech Lead / Senior Bioinformatics Engineer</div>
-            </div>
-          </div>
-          <div class="experience-list">
-            <div class="experience-item">
-              <strong>Cloud‑native pipelines:</strong> Developed and optimized Python/Docker/Nextflow pipelines on AWS for genomics and clinical workflows.
-            </div>
-            <div class="experience-item">
-              <strong>CI/CD & quality:</strong> Modernized GitLab CI/CD and GitHub Actions to automate testing, validation and releases across multiple services.
-            </div>
-            <div class="experience-item">
-              <strong>Leadership:</strong> Provided technical leadership and mentoring on cloud architecture, pipelines and DevOps practices in a cross‑functional team.
-            </div>
-          </div>
-          <div class="experience-meta">2022 – Present • Helsinki, Finland</div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Earlier roles & education</div>
-              <div class="card-subtitle">MediSapiens • Self‑employed • University of Helsinki</div>
-            </div>
-          </div>
-          <div class="experience-list">
-            <div class="experience-item">
-              <strong>MediSapiens:</strong> Led software projects as Solutions Architect / Team Manager; built Django/PostgreSQL backends and ML‑driven solutions for biological data.
-            </div>
-            <div class="experience-item">
-              <strong>Self‑employed:</strong> Developed Shopify‑based e‑commerce sites and analytics‑driven improvements with a strong customer‑facing focus.
-            </div>
-            <div class="experience-item">
-              <strong>Education:</strong> PhD in Quantitative Genetics and Master in Bioinformatics (5/5), University of Helsinki.
-            </div>
-          </div>
-          <div class="experience-meta">2016 – 2022 • Bioinformatics, data & web</div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-title">Selected <span>Projects</span></h2>
-      <div class="grid grid-2">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Finnish Match Madness – Vocabulary Trainer PWA</div>
-              <div class="card-subtitle">Offline‑first language learning game</div>
-            </div>
-            <span class="pill-small">HTML • CSS • JS • PWA</span>
-          </div>
-          <div class="card-body">
-            Built a mobile‑friendly, Duolingo‑style “match madness” game for learning Finnish vocabulary, running fully in the browser with offline support and smooth touch interaction.
-          </div>
-          <div class="card-tags">
-            <span class="card-tag">Progressive Web App</span>
-            <span class="card-tag">Game‑like UX</span>
-            <span class="card-tag">Client‑side performance</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Workout Tracker – Offline‑First PWA</div>
-              <div class="card-subtitle">Long‑term training history & stats</div>
-            </div>
-            <span class="pill-small">JS • PWA • Data viz</span>
-          </div>
-          <div class="card-body">
-            Created a workout tracking app that stores workouts locally, works offline, and provides time‑windowed statistics and visualizations for training progression.
-          </div>
-          <div class="card-tags">
-            <span class="card-tag">Local persistence</span>
-            <span class="card-tag">Offline UX</span>
-            <span class="card-tag">Data visualization</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Gratitude Diary – Journaling PWA</div>
-              <div class="card-subtitle">Everyday mental‑wellbeing tool</div>
-            </div>
-            <span class="pill-small">HTML • CSS • JS</span>
-          </div>
-          <div class="card-body">
-            Designed a mobile‑optimized gratitude diary with calendar view, photo attachments, JSON export and offline support, optimized for quick, low‑friction daily entries.
-          </div>
-          <div class="card-tags">
-            <span class="card-tag">Product thinking</span>
-            <span class="card-tag">Mobile UX</span>
-            <span class="card-tag">Offline‑first design</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">RAG Chatbot & LLM Chrome Extensions</div>
-              <div class="card-subtitle">Agentic AI for real workflows</div>
-            </div>
-            <span class="pill-small">LangChain • Pinecone • LLMs</span>
-          </div>
-          <div class="card-body">
-            Prototyped a RAG chatbot for static websites using vector search (Pinecone) and built Chrome extensions to streamline job search and advanced prompt engineering with multiple LLM providers.
-          </div>
-          <div class="card-tags">
-            <span class="card-tag">Agentic AI</span>
-            <span class="card-tag">RAG</span>
-            <span class="card-tag">Developer tooling</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-
-
-    <footer class="footer">
-      <div>Open to Senior/Principal Software Engineer & Tech Lead roles in genomics and digital health.</div>
-      <div class="footer-links">
-        <a class="footer-link" href="mailto:sweechong.wong@gmail.com">Email</a>
-        <a class="footer-link" href="https://www.linkedin.com/in/sweechongwong/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="footer-link" href="https://github.com/scwong85" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </footer>
   </main>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Let's talk about what you're building.</h2>
+        <p>Genomics platforms, applied AI, or health tech products: I'm glad to compare notes.</p>
+      </div>
+      <div class="links">
+        <a class="email" href="mailto:sweechong.wong@gmail.com">sweechong.wong@gmail.com</a>
+        <a href="https://www.linkedin.com/in/sweechongwong/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/scwong85" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.researchgate.net/profile/Swee-Wong-3" target="_blank" rel="noreferrer">ResearchGate</a>
+      </div>
+    </div>
+  </section>
+  <footer class="wrap">© Swee Chong Wong · Helsinki, Finland</footer>
+
+  <script>
+    (function () {
+      var cv = document.getElementById("trace");
+      if (!cv || !cv.getContext) return;
+      var ctx = cv.getContext("2d");
+      var seq = "ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTC";
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var progress = reduce ? 1 : 0;
+      var heights = [];
+      for (var i = 0; i < seq.length; i++) heights.push(0.55 + 0.45 * Math.abs(Math.sin(i * 12.9898 + 1.7)));
+
+      function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+      function draw() {
+        var dpr = window.devicePixelRatio || 1;
+        var w = cv.clientWidth, h = cv.clientHeight;
+        if (!w || !h) return;
+        if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
+          cv.width = Math.round(w * dpr);
+          cv.height = Math.round(h * dpr);
+        }
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        var colors = { A: token("--base-a"), C: token("--base-c"), G: token("--base-g"), T: token("--base-t") };
+        var n = seq.length, step = w / (n + 1), baseY = h - 28, amp = h - 52;
+        var limit = w * progress;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0, 0, limit, h);
+        ctx.clip();
+        ctx.lineWidth = 1.8;
+        ctx.lineJoin = "round";
+        ["A", "C", "G", "T"].forEach(function (b) {
+          ctx.beginPath();
+          ctx.strokeStyle = colors[b];
+          for (var x = 0; x <= w; x += 2) {
+            var v = 0;
+            for (var i = 0; i < n; i++) {
+              var cx = step * (i + 1);
+              var d = (x - cx) / (step * 0.4);
+              v += (seq[i] === b ? heights[i] : 0.07) * Math.exp(-d * d);
+            }
+            var y = baseY - amp * Math.min(1, v);
+            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        });
+        ctx.font = "600 12px " + (token("--font-mono") || "monospace");
+        ctx.textAlign = "center";
+        for (var j = 0; j < n; j++) {
+          var px = step * (j + 1);
+          if (px > limit) break;
+          ctx.fillStyle = colors[seq[j]];
+          ctx.fillText(seq[j], px, h - 8);
+        }
+        ctx.restore();
+      }
+
+      function run(ts) {
+        if (!run.t0) run.t0 = ts;
+        var p = Math.min(1, (ts - run.t0) / 1900);
+        progress = 1 - Math.pow(1 - p, 3);
+        draw();
+        if (p < 1) requestAnimationFrame(run);
+      }
+
+      window.addEventListener("resize", draw);
+      if (window.matchMedia) {
+        var mq = window.matchMedia("(prefers-color-scheme: dark)");
+        if (mq.addEventListener) mq.addEventListener("change", draw);
+      }
+      if (reduce) draw(); else requestAnimationFrame(run);
+    })();
+  </script>
 </body>
 </html>
